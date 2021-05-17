@@ -27,12 +27,16 @@
             </div>
         </div>
         <div class="row">
-            <iframe width="1533" height="628" src="https://www.youtube.com/embed/blM9Ptr1dWg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1533" height="628" src="https://www.youtube.com/embed/blM9Ptr1dWg"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
         </div>
         <div>
             <button id="start" onclick="onStart()">Start</button>
             <button id="stop" onclick="onStop()">Stop and Submit</button>
             <button id="reset" onclick="onReset()">Reset</button>
+            <input id="userId" value="" placeholder="Please enter user id" />
             <h2 id="score"></h2>
         </div>
     </div>
@@ -149,29 +153,36 @@
     //function executes when the Stop button is pushed.
     function onStop() {
         log('#logs', "Clicked the stop button");
-        if (detector && detector.isRunning) {
-            detector.removeEventListener();
-            detector.stop();
-            // $.post('http://localhost:5000/api/v1/regression',
-            //     {
-            //         faceParams: faceParams
-            //     },
-            //     function (data, status) {
-            //         alert("Data: " + data + "\nStatus: " + status);
-            //     });
-            $.ajax({
-                url: 'http://localhost:3210/emotions',
-                type: 'POST',
-                data: JSON.stringify({
-                    faceParams: faceParams
-                }),
-                contentType: 'application/json; charset=utf-8',
-                success: function (data) {
-                    console.log(data);
-                    alert(JSON.stringify(data))
-                    $('#score').html(data.mean)
-                },
-            })
+        alert($("#userId").val())
+        return;
+        if ($("#userId").val().length > 0) {
+            if (detector && detector.isRunning) {
+                detector.removeEventListener();
+                detector.stop();
+                // $.post('http://localhost:5000/api/v1/regression',
+                //     {
+                //         faceParams: faceParams
+                //     },
+                //     function (data, status) {
+                //         alert("Data: " + data + "\nStatus: " + status);
+                //     });
+                $.ajax({
+                    url: 'http://localhost:3210/emotions',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        faceParams: faceParams,
+                        userId: $('#userId').val()
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        console.log(data);
+                        alert(JSON.stringify(data))
+                        $('#score').html(data.mean)
+                    },
+                })
+            }
+        }else{
+            alert("Please enter the user ID")
         }
     };
 

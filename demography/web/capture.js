@@ -137,7 +137,10 @@
       context.drawImage(video, 0, 0, width, height);
 
       var data = canvas.toDataURL("image/png");
-      images.push(data);
+      images.push({
+        time: Date.now(),
+        data
+      });
       // console.log(data);
       photo.setAttribute("src", data);
     } else {

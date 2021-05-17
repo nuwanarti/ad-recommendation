@@ -14,7 +14,7 @@ router.post('/emotions', async function(req, res, next){
   // return res.json({success: true})
   // console.log(req.body.faceParams)
   let emotions = req.body.faceParams.map(o => {
-    o['userId'] = 'testid'
+    o['userId'] = req.body.userId
     return o
   })
 
