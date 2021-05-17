@@ -2,6 +2,10 @@ var mongoose = require("mongoose");
 var bcrypt = require("bcrypt");
 
 var EmotionSchema = new mongoose.Schema({
+  timestamp: {
+    type: Number,
+    required: true
+  },
   userId: {
     type: String,
     required: true,

@@ -10,7 +10,9 @@ var MongoStore = require('connect-mongodb-session')(session);
 // connect to a database
 // mongodb://<user>:<password>@<host>/<database>
 // mongoose.connect('mongodb://lintang:1234@localhost/signin');
-mongoose.connect('mongodb+srv://nuwanarti:freeznuwa@cluster0.ocds4.mongodb.net/test')
+//mongoose.connect('mongodb+srv://lahiru2:lahiru2@cluster0.ce9ph.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+//mongoose.connect('mongodb+srv://nuwanarti:nuwanarti@cluster0.ocds4.mongodb.net/myFirstDatabase')
+mongoose.connect('mongodb://localhost:27017/recommendersystems')
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){});

@@ -102,7 +102,8 @@
             if (faces.length > 0) {
                 let face = {
                     ...(faces[0].expressions),
-                    ...(faces[0].emotions)
+                    ...(faces[0].emotions),
+                    timestamp: Date.now()
                 }
                 faceParams.push(face);
                 log('#results', "Appearance: " + JSON.stringify(faces[0].appearance));
@@ -153,8 +154,8 @@
     //function executes when the Stop button is pushed.
     function onStop() {
         log('#logs', "Clicked the stop button");
-        alert($("#userId").val())
-        return;
+        //alert($("#userId").val())
+        //return;
         if ($("#userId").val().length > 0) {
             if (detector && detector.isRunning) {
                 detector.removeEventListener();
