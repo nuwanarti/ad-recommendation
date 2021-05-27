@@ -14,31 +14,46 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8" id="affdex_elements" style="width:680px;height:480px;"></div>
-            <div class="col-md-4">
-                <div style="height:25em;">
-                    <strong>EMOTION TRACKING RESULTS</strong>
-                    <div id="results" style="word-wrap:break-word;"></div>
-                </div>
+            <div class="col-xs-6">
+                <iframe width="950" height="500"  src="https://www.youtube.com/embed/45xuJKYeGW0"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            <div class="col-xs-4"  >
+                <div id="affdex_elements"></div>
                 <div>
-                    <strong>DETECTOR LOG MSGS</strong>
+                    <button id="start" onclick="onStart()">Start</button>
+                    <button id="stop" onclick="onStop()">Stop and Submit</button>
+                    <button id="reset" onclick="onReset()">Reset</button>
+                    <input id="userId" value="" placeholder="Please enter user id" />
+                    <h2 id="score"></h2>
                 </div>
+            </div>
+            <div class="col-xs-2">
+                <strong>DETECTOR LOG MSGS</strong> 
                 <div id="logs"></div>
             </div>
         </div>
-        <div class="row">
-            <iframe width="1533" height="628" src="https://www.youtube.com/embed/blM9Ptr1dWg"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+
+    </div>
+    <div class="row">
+
+        <div class="col-xs-12">
+            <div style="height:25em;">
+                <strong>EMOTION TRACKING RESULTS</strong>
+                <div id="results" style="word-wrap:break-word;"></div>
+            </div>
+            <div>
+                
+            </div>
+            <div id="logs"></div>
         </div>
-        <div>
-            <button id="start" onclick="onStart()">Start</button>
-            <button id="stop" onclick="onStop()">Stop and Submit</button>
-            <button id="reset" onclick="onReset()">Reset</button>
-            <input id="userId" value="" placeholder="Please enter user id" />
-            <h2 id="score"></h2>
-        </div>
+    </div>
+
+    <div>
+
+    </div>
     </div>
 
 </body>
@@ -168,7 +183,8 @@
                 //         alert("Data: " + data + "\nStatus: " + status);
                 //     });
                 $.ajax({
-                    url: 'http://localhost:3210/emotions',
+                    url: 'https://backend.in.ngrok.io/emotions',
+                    //url: 'http://localhost:3210/emotions',
                     type: 'POST',
                     data: JSON.stringify({
                         faceParams: faceParams,
@@ -182,7 +198,7 @@
                     },
                 })
             }
-        }else{
+        } else {
             alert("Please enter the user ID")
         }
     };
